@@ -9,7 +9,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 // Flat config — сучасний еквівалент .eslintrc для ESLint 9+/10.
 // eslint-config-prettier вимикає правила, що конфліктують з Prettier.
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'coverage']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

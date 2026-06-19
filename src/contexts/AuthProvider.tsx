@@ -2,21 +2,8 @@ import { useState } from 'react';
 import type { ReactNode } from 'react';
 import type { User } from '../types/user';
 import { TOKEN_STORAGE_KEY } from '../constants';
+import { decodeUser } from '../utils/decodeUser';
 import { AuthContext } from './AuthContext';
-
-/**
- * Дістає користувача з payload JWT (поле `username`).
- * Обгорнуто в try/catch: битий/чужий токен не має ронити застосунок.
- */
-function decodeUser(token: string): User | null {
-  try {
-    const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-    const payload = JSON.parse(atob(base64)) as { username?: string };
-    return payload.username ? { username: payload.username } : null;
-  } catch {
-    return null;
-  }
-}
 
 /**
  * Провайдер автентифікації.
